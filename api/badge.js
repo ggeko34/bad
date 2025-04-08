@@ -54,6 +54,7 @@ const badgeHandler = async (req, res) => {
         html,
         transparent: true,
         puppeteerArgs: {
+            executablePath: process.env.CHROME_BIN || null,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             defaultViewport: {
                 width: 1200,

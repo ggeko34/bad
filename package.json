@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "nodemon api/badge.js",
     "start": "node -r express api/badge.js",
-    "vercel-build": "echo 'Building...'"
+    "vercel-build": "echo 'Building...'",
+    "postinstall": "npx puppeteer install"
   },
   "dependencies": {
     "canvas": "^3.1.0",
