@@ -1,10 +1,8 @@
 const express = require('express');
 const nodeHtmlToImage = require('node-html-to-image');
-const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/badge/:icon', async (req, res) => {
-    const { icon } = req.params;
+const badgeHandler = async (req, res) => {
+    const icon = req.query.icon || req.params.icon || req.url.split('/badge/')[1]?.split('?')[0];
     const { style = 'fa-brands', color = 'ffffff', bg = '31A8FF', text = '', textColor = '000000' } = req.query;
 
     const html = `
@@ -69,9 +67,20 @@ app.get('/badge/:icon', async (req, res) => {
         type: 'png'
     });
 
-    res.writeHead(200, { 'Content-Type': 'image/png' });
-    res.end(image, 'binary');
-});
+    res.writeHead(200, { 'Content-Type': 'image/png' }); res.end(image, 'binary');
+};
 
-// Export the Express app for Vercel
-module.exports = app;
+// Check if running in Vercel
+if (process.env.VERCEL) {
+    module.exports = badgeHandler;
+} else {
+    const app = express();
+    const port = process.env.PORT || 3000;
+
+    app.get('/badge/:icon', badgeHandler);
+    app.get('/api/badge/:icon', badgeHandler);
+
+    app.listen(port, () => {
+        console.log(`Badge API server running at http://localhost:${port}`);
+    });
+}

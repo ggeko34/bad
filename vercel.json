@@ -8,8 +8,12 @@
     ],
     "routes": [
         {
+            "src": "/api/badge/(.*)",
+            "dest": "/api/badge.js"
+        },
+        {
             "src": "/badge/(.*)",
-            "dest": "api/badge.js"
+            "dest": "/api/badge.js"
         }
     ]
 }

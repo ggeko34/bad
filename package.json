@@ -1,8 +1,21 @@
 {
+  "name": "badge-api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon api/badge.js",
+    "start": "node -r express api/badge.js",
+    "vercel-build": "echo 'Building...'"
+  },
   "dependencies": {
     "canvas": "^3.1.0",
     "express": "^5.1.0",
     "node-html-to-image": "^5.0.0",
     "puppeteer": "^24.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }
