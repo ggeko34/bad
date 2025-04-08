@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/badge.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/badge/(.*)",
+            "dest": "api/badge.js"
+        }
+    ]
+}
